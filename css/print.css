@@ -1,0 +1,10 @@
+@media print {
+  @page { margin: 1.5cm; }
+  body { font-size: 11pt; color: #000; background: #fff; }
+  h2 { font-size: 16pt; margin-bottom: 4pt; }
+  .u-stat { background: #f5f5f5; border-left: 3pt solid #1D9E75; }
+  .fbox { background: #f5f5f5; border: 1pt solid #ccc; font-size: 9pt; }
+  .eg { background: #f0f5ff; border-left: 3pt solid #185FA5; }
+  .kr { background: #f0faf5; }
+  .warn { background: #fffbf0; border-left: 3pt solid #BA7517; }
+}
