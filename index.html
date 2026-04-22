@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Chemistry — Interactive Database</title>
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div id="tb-brand">AP Chem <span>DB</span></div>
+  <div class="tb-sep"></div>
+  <div id="tb-tabs">
+    <button class="tb-tab active" data-section="content">Content</button>
+    <button class="tb-tab" data-section="questions">Questions</button>
+    <button class="tb-tab" data-section="misconceptions">Misconceptions</button>
+    <button class="tb-tab" data-section="planner">Planner</button>
+    <button class="tb-tab" data-section="notebook">Notebook</button>
+    <button class="tb-tab" data-section="equations">Equations</button>
+    <button class="tb-tab" data-section="examtips">Exam Tips</button>
+    <button class="tb-tab" data-section="settings">Settings</button>
+  </div>
+  <div id="tb-right">
+    <div id="search-wrap">
+      <span id="search-icon">&#9906;</span>
+      <input id="search-input" type="text" placeholder="Search... (press /)" autocomplete="off" spellcheck="false">
+      <div id="search-results"></div>
+    </div>
+    <button class="icon-btn" id="btn-notebook" title="Toggle notebook" onclick="UI.togglePanel('notebook')" style="width:auto;padding:0 9px;font-size:11px;font-weight:600">📓</button>
+    <button class="icon-btn active" id="btn-db" title="Toggle reference sheet" onclick="UI.togglePanel('right')" style="width:auto;padding:0 9px;font-size:11px;font-weight:600">Ref</button>
+    <button class="icon-btn" id="btn-sidebar" title="Toggle sidebar" onclick="UI.togglePanel('left')" style="width:auto;padding:0 9px;font-size:11px;font-weight:600">&#9776;</button>
+    <button class="icon-btn" title="Print" onclick="window.print()" style="width:auto;padding:0 9px;font-size:11px;font-weight:600">Print</button>
+  </div>
+</div>
+
+<!-- SUBTABS -->
+<div id="subtabs">
+  <span id="subtab-label">View:</span>
+  <button class="sub-tab active" data-view="textbook">Textbook</button>
+  <button class="sub-tab" data-view="studyguide">Study Guide</button>
+  <button class="sub-tab" data-view="concept">Concept</button>
+  <div class="sub-tab-divider"></div>
+  <button class="sub-tab" data-view="labs">Labs</button>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div id="main">
+  <div id="sidebar"></div>
+  <div id="content-area"></div>
+  <div id="right-panel">
+    <div class="rp-section">
+      <div class="rp-title">Constants</div>
+      <div class="rp-row"><span class="rp-label">N<sub>A</sub></span><span class="rp-val">6.022 &times; 10<sup>23</sup> mol<sup>&minus;1</sup></span></div>
+      <div class="rp-row"><span class="rp-label">R</span><span class="rp-val">8.314 J mol<sup>&minus;1</sup> K<sup>&minus;1</sup></span></div>
+      <div class="rp-row"><span class="rp-label">R</span><span class="rp-val">0.08206 L atm mol<sup>&minus;1</sup> K<sup>&minus;1</sup></span></div>
+      <div class="rp-row"><span class="rp-label">h</span><span class="rp-val">6.626 &times; 10<sup>&minus;34</sup> J s</span></div>
+      <div class="rp-row"><span class="rp-label">c</span><span class="rp-val">2.998 &times; 10<sup>8</sup> m s<sup>&minus;1</sup></span></div>
+      <div class="rp-row"><span class="rp-label">F</span><span class="rp-val">96,485 C mol<sup>&minus;1</sup></span></div>
+      <div class="rp-row"><span class="rp-label">k<sub>B</sub></span><span class="rp-val">1.381 &times; 10<sup>&minus;23</sup> J K<sup>&minus;1</sup></span></div>
+      <div class="rp-row"><span class="rp-label">K<sub>w</sub></span><span class="rp-val">1.0 &times; 10<sup>&minus;14</sup> (25&deg;C)</span></div>
+      <div class="rp-row"><span class="rp-label">c<sub>water</sub></span><span class="rp-val">4.184 J g<sup>&minus;1</sup> &deg;C<sup>&minus;1</sup></span></div>
+      <div class="rp-row"><span class="rp-label">1 atm</span><span class="rp-val">101.325 kPa</span></div>
+      <div class="rp-row"><span class="rp-label">1 atm</span><span class="rp-val">760 mmHg</span></div>
+    </div>
+    <div class="rp-section">
+      <div class="rp-title">Key Equations</div>
+      <code class="rp-code">n = m / M</code>
+      <code class="rp-code">PV = nRT</code>
+      <code class="rp-code">c = n / V (molarity)</code>
+      <code class="rp-code">E = hf = hc/&lambda;</code>
+      <code class="rp-code">q = mc&Delta;T</code>
+      <code class="rp-code">&Delta;H&deg; = &Sigma;&Delta;H<sub>f</sub>&deg;(prod) &minus; &Sigma;&Delta;H<sub>f</sub>&deg;(react)</code>
+      <code class="rp-code">K = [products] / [reactants]</code>
+      <code class="rp-code">&Delta;G&deg; = &Delta;H&deg; &minus; T&Delta;S&deg;</code>
+      <code class="rp-code">&Delta;G&deg; = &minus;RT ln K</code>
+      <code class="rp-code">E&deg;<sub>cell</sub> = E&deg;<sub>cathode</sub> &minus; E&deg;<sub>anode</sub></code>
+      <code class="rp-code">pH = &minus;log[H<sup>+</sup>]</code>
+      <code class="rp-code">pH = pK<sub>a</sub> + log([A<sup>&minus;</sup>]/[HA])</code>
+      <code class="rp-code">E = E&deg; &minus; (RT/nF) ln Q</code>
+      <code class="rp-code">&Delta;G = &Delta;G&deg; + RT ln Q</code>
+      <code class="rp-code">A = &epsilon;bc (Beer-Lambert)</code>
+      <code class="rp-code">I = q / t</code>
+    </div>
+    <div class="rp-section">
+      <div class="rp-title">STP Conditions</div>
+      <div class="rp-row"><span class="rp-label">T</span><span class="rp-val">273.15 K (0&deg;C)</span></div>
+      <div class="rp-row"><span class="rp-label">P</span><span class="rp-val">1.000 atm</span></div>
+      <div class="rp-row"><span class="rp-label">V<sub>m</sub></span><span class="rp-val">22.414 L mol<sup>&minus;1</sup></span></div>
+    </div>
+    <div class="rp-section">
+      <div class="rp-title">Subatomic Particles</div>
+      <div class="rp-row"><span class="rp-label">proton</span><span class="rp-val">m &asymp; 1 amu, z = +1</span></div>
+      <div class="rp-row"><span class="rp-label">neutron</span><span class="rp-val">m &asymp; 1 amu, z = 0</span></div>
+      <div class="rp-row"><span class="rp-label">electron</span><span class="rp-val">m &asymp; 0, z = &minus;1</span></div>
+    </div>
+    <div class="rp-section">
+      <div class="rp-title">Electron Config (Aufbau)</div>
+      <code class="rp-code">1s 2s 2p 3s 3p
+4s 3d 4p 5s 4d
+5p 6s 4f 5d 6p
+7s 5f 6d 7p</code>
+    </div>
+    <div class="rp-section">
+      <div class="rp-title">AP Exam Format</div>
+      <div class="rp-row"><span class="rp-label">MCQ</span><span class="rp-val">60 Q &middot; 90 min</span></div>
+      <div class="rp-row"><span class="rp-label">FRQ</span><span class="rp-val">7 Q &middot; 105 min</span></div>
+      <div class="rp-row"><span class="rp-label">Score</span><span class="rp-val">50% MCQ + 50% FRQ</span></div>
+    </div>
+  </div>
+
+  <!-- Notebook Panel -->
+  <div id="notebook-panel" class="hidden">
+    <div class="np-header">
+      <span class="np-title">📓 Quick Notes</span>
+      <button class="np-btn" onclick="UI.addQuickNote()" title="Add note">+</button>
+    </div>
+    <div id="np-notes"></div>
+    <div class="np-footer">
+      <button class="np-link" onclick="APP.showSection('notebook')">Open full notebook →</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- MathJax v3 -->
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    packages: {'[+]': ['mhchem']}
+  },
+  loader: {load: ['[tex]/mhchem']},
+  startup: { ready: function() { MathJax.startup.defaultReady(); } }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<!-- SCRIPTS: config first, then data, then app -->
+<script src="config.js"></script>
+<!-- Shared data -->
+<script src="data/shared/concepts.js"></script>
+<script src="data/shared/misconceptions.js"></script>
+<script src="data/shared/variables.js"></script>
+<!-- Unit data -->
+<script src="data/unit1/content.js"></script>
+<script src="data/unit1/questions.js"></script>
+<script src="data/unit1/labs.js"></script>
+<script src="data/unit2/content.js"></script>
+<script src="data/unit2/questions.js"></script>
+<script src="data/unit2/labs.js"></script>
+<script src="data/unit3/content.js"></script>
+<script src="data/unit3/questions.js"></script>
+<script src="data/unit3/labs.js"></script>
+<script src="data/unit4/content.js"></script>
+<script src="data/unit4/questions.js"></script>
+<script src="data/unit4/labs.js"></script>
+<script src="data/unit5/content.js"></script>
+<script src="data/unit5/questions.js"></script>
+<script src="data/unit5/labs.js"></script>
+<script src="data/unit6/content.js"></script>
+<script src="data/unit6/questions.js"></script>
+<script src="data/unit6/labs.js"></script>
+<script src="data/unit7/content.js"></script>
+<script src="data/unit7/questions.js"></script>
+<script src="data/unit7/labs.js"></script>
+<script src="data/unit8/content.js"></script>
+<script src="data/unit8/questions.js"></script>
+<script src="data/unit8/labs.js"></script>
+<script src="data/unit9/content.js"></script>
+<script src="data/unit9/questions.js"></script>
+<script src="data/unit9/labs.js"></script>
+<!-- App modules -->
+<script src="sessions/userdata.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/search.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/content.js"></script>
+<script src="js/questions.js"></script>
+<script src="js/planner.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
